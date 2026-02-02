@@ -1,7 +1,8 @@
 from atm import ATM
 from money_amount import MoneyAmount
+import file_service as storage
 
-atm = ATM()
+atm = storage.load()
 
 msg_main = """
         choose one of: \n 
@@ -28,8 +29,6 @@ msg_deposit = {
         MoneyAmount.BNOTE_20: msg_deposit_20,
         MoneyAmount.BNOTE_10: msg_deposit_10,
         MoneyAmount.BNOTE_5: msg_deposit_5}
-
-
 
 while True:
     inp_main = input(msg_main)
@@ -65,3 +64,5 @@ while True:
 
     if int(inp_main) == 3:
         print(f"ATM balance: {atm.get_sum()}")
+
+storage.save(atm)
