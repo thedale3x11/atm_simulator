@@ -2,7 +2,7 @@ from atm import ATM
 from money_amount import MoneyAmount
 import file_service as storage
 
-atm = storage.load()
+
 
 msg_main = """
         choose one of: \n 
@@ -36,7 +36,8 @@ while True:
     if inp_main == "Q" or inp_main == "q":
         break
 
-    if int(inp_main) == 1:
+    if int(inp_main) == 1: # widthdraw
+        atm = storage.load()
         while True:
             inp_widthdraw = input(msg_withdraw)
 
@@ -45,11 +46,12 @@ while True:
                 break
             if inp_widthdraw.isdigit():
                 atm.widthdraw(int(inp_widthdraw))
+        storage.save(atm)
 
-    if int(inp_main) == 2:
+
+    if int(inp_main) == 2: # deposit
         maney_deposit = MoneyAmount()
         do_deposit = True
-
 
         for k in msg_deposit.keys():
             while do_deposit:
@@ -60,9 +62,10 @@ while True:
                 if inp_deposit.isdigit():
                     maney_deposit.bnote(k,inp_deposit)
                     break
+        atm = storage.load()
         atm.deposit(maney_deposit)
-
-    if int(inp_main) == 3:
+        storage.save(atm)
+        
+    if int(inp_main) == 3: # balance
+        atm = storage.load()
         print(f"ATM balance: {atm.get_sum()}")
-
-storage.save(atm)
