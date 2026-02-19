@@ -1,7 +1,5 @@
-from atm import ATM
 from money_amount import MoneyAmount
-import file_service as storage
-
+import atm_service as atm_service
 
 
 msg_main = """
@@ -37,7 +35,7 @@ while True:
         break
 
     if int(inp_main) == 1: # widthdraw
-        atm = storage.load()
+        
         while True:
             inp_widthdraw = input(msg_withdraw)
 
@@ -45,8 +43,8 @@ while True:
                 inp_widthdraw = False
                 break
             if inp_widthdraw.isdigit():
-                atm.widthdraw(int(inp_widthdraw))
-        storage.save(atm)
+                atm_service.widthdraw(inp_widthdraw)
+        
 
 
     if int(inp_main) == 2: # deposit
@@ -62,10 +60,7 @@ while True:
                 if inp_deposit.isdigit():
                     maney_deposit.bnote(k,inp_deposit)
                     break
-        atm = storage.load()
-        atm.deposit(maney_deposit)
-        storage.save(atm)
+        atm_service.deposit(maney_deposit)
         
     if int(inp_main) == 3: # balance
-        atm = storage.load()
-        print(f"ATM balance: {atm.get_sum()}")
+        print(f"ATM balance: {atm_service.balance()}")
