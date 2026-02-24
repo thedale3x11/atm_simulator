@@ -1,6 +1,6 @@
 from money_amount import MoneyAmount
 import atm_service as atm_service
-
+from no_money_exception import NoMoneyError
 
 msg_main = """
         choose one of: \n 
@@ -43,8 +43,10 @@ while True:
                 inp_widthdraw = False
                 break
             if inp_widthdraw.isdigit():
-                atm_service.widthdraw(inp_widthdraw)
-        
+                try:
+                    atm_service.widthdraw(int(inp_widthdraw))
+                except NoMoneyError:
+                    print("No enough money in ATM.")
 
 
     if int(inp_main) == 2: # deposit

@@ -13,7 +13,7 @@ class ATM:
 
     def widthdraw(self, sum):
         money_widthdraw = MoneyAmount()
-        
+
         for nom in [money_widthdraw.BNOTE_100,money_widthdraw.BNOTE_50,money_widthdraw.BNOTE_20,money_widthdraw.BNOTE_10,money_widthdraw.BNOTE_5]:
             count = int(sum/nom)
             sum=sum-(count*nom)
@@ -33,5 +33,5 @@ class ATM:
                 money_widthdraw.five = count
             
             if sum == 0:
-                break              
+                break        
         self.ma.subtract(money_widthdraw)
