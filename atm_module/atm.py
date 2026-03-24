@@ -1,9 +1,11 @@
-from money_amount import MoneyAmount
+from atm_module.money_amount import MoneyAmount
 
 
 class ATM:
-    def __init__(self):
-        self.ma = MoneyAmount()
+    def __init__(self, ma=None):
+        if ma is None:
+            ma=MoneyAmount()
+        self.ma = ma
 
     def deposit(self, ma_income):
         self.ma.add(ma_income)
@@ -35,3 +37,6 @@ class ATM:
             if sum == 0:
                 break        
         self.ma.subtract(money_widthdraw)
+
+    def to_dict(self):
+        return {"ma":self.ma.to_dict()}

@@ -1,6 +1,6 @@
-import file_service as storage
-from atm import ATM
-from no_money_exception import NoMoneyError
+import atm_module.atm_repo as storage
+from atm_module.atm import ATM
+from exceptions.no_money_exception import NoMoneyError
 
 def widthdraw(summa):
     atm = storage.load()

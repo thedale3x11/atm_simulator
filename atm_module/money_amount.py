@@ -6,12 +6,12 @@ class MoneyAmount:
     BNOTE_10=10
     BNOTE_5=5                                                                
 
-    def __init__(self):
-        self.hundred=0
-        self.fifty=0
-        self.twenty=0
-        self.ten=0
-        self.five=0
+    def __init__(self, hundred=0, fifty=0, twenty=0, ten=0, five=0):
+        self.hundred = hundred
+        self.fifty= fifty
+        self.twenty= twenty
+        self.ten= ten
+        self.five= five
 
 
     def add_hundred(self, amount):
@@ -53,4 +53,15 @@ class MoneyAmount:
         self.twenty -= ma.twenty
         self.ten -= ma.ten
         self.five -= ma.five
+
+    def to_dict(self):
+        dict = {
+            "hundred": self.hundred,
+            "fifty": self.fifty,
+            "twenty": self.twenty,
+            "ten": self.ten,
+            "five": self.five
+        }
+
+        return dict 
         
