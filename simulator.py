@@ -1,5 +1,5 @@
-from atm_module.money_amount import MoneyAmount
-import atm_module.atm_service as atm_service
+from atm.model.money_amount import MoneyAmount
+import atm.service as atm_service
 from exceptions.no_money_exception import NoMoneyError
 
 msg_main = """
